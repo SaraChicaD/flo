@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('mostPopularListingsApp.login', ['ngRoute'])
+angular.module('flo.login', ['ngRoute'])
 
 // Routing configuration for this module
 .config(['$routeProvider',function($routeprovider){
@@ -15,56 +15,46 @@ angular.module('mostPopularListingsApp.login', ['ngRoute'])
 	});
 }])
 
-// Controller definition for this module
-.controller('LoginController', function($scope,$http,$timeout) {
-
-		// Global variables for this controller
-		var responseStatus = '';
-		var userIp = 'not yet retrieved';
-
-		// Just a housekeeping.
-		// In the init method we are declaring all the
-		// neccesarry settings and assignments to be run once
-		// controller is invoked
-		init();
-
-		function init(){};
-
-		// Get requestors IP address from httpbin.org
-		function loadUserIp(){
-
-			// Before serving login page we are doing example http request
-			// to web API to verify if login service is up and running.
-			// Using httpbin.org as mock in this case - it returns requestors IP address
-
-			return $http.get('http://httpbin.org/ip').
-		  		then(function(response) {
-		    	// this callback will be called asynchronously
-		    	// when the response is available
-		    	responseStatus = response.status;
-		    	userIp = response.data.origin;
-		    	console.log(userIp);
-		    	console.log(JSON.stringify(response.data));
-
-		    	// assigning userIp to scope
-		    	return $scope.userip = userIp;
-
-		    }, function(errorResponse) {
-		    	// called asynchronously if an error occurs
-		    	// or server returns response with an error status.
-		    	responseStatus = errorResponse.status;
-		    	console.log(JSON.stringify(errorresponse));
-
-		    	// assigning userIp to scope
-		    	return $scope.userip = userIp;
-		    });
-
-		};
-
-		this.message = "Login Time!";
-		
-		// // Adding small delay for IP address to be populated before loading the view
-		var filterTextTimeout = $timeout(function() {
-			loadUserIp();            
-        }, 500); // delay 500 ms		
-});
+.controller('LoginController',['$scope', '$log', function($scope, $log) {
+   
+    var clientId = "";
+    var scopes = 'https://www.googleapis.com/auth/calendar';
+ 
+    function handleAuthResult(authResult) {
+        console.log(authResult);
+        var authorizeButton = document.getElementById('authorize-button');
+        if (authResult && !authResult.error) {
+           // authorizeButton.style.visibility = 'hidden';
+            makeApiCall();
+        } else {
+            authorizeButton.style.visibility = '';
+            authorizeButton.onclick = handleAuthClick;
+        }
+    }
+ 
+    $scope.handleAuthClick=function (event) {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+        return false;
+    }
+ 
+    function makeApiCall() {
+        gapi.client.load('calendar', 'v3', function() {
+            var request = gapi.client.calendar.calendarList.list();
+            request.execute(function(resp){
+                $.each( resp.items, function( key, value ) {
+                    console.log(resp.items[key].id);
+                });
+            });
+            var request1 = gapi.client.calendar.events.list({
+                'calendarId': 'primary',
+                'timeMin': '2015-12-23T04:26:52.000Z'//Suppose that you want get data after 23 Dec 2014
+             });
+            request1.execute(function(resp){
+                $.each( resp.items, function( key, value ) {
+                    console.log(resp.items[key].id);// here you give all events from google calendar
+                });
+            });
+        });
+    } 
+ 
+}]);

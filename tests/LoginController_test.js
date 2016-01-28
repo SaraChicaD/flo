@@ -3,7 +3,7 @@
 describe('LoginController Tests :', function() {
 
   // Only loading one module which is being tested
-  beforeEach(module('mostPopularListingsApp.login'));
+  beforeEach(module('flo.login'));
 
   describe('Loading LoginController. It...', function(){
 

@@ -3,7 +3,7 @@
 describe('AboutController Tests :', function() {
 
   // Only loading one module which is being tested
-  beforeEach(module('mostPopularListingsApp.about'));
+  beforeEach(module('flo.about'));
 
   describe('Loading AboutController. It...', function(){
 
