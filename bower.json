@@ -1,0 +1,12 @@
+{
+  "name": "flo",
+  "description": "Health tracking app",
+  "version": "0.0.1",
+  "homepage": "https://github.com/SaraChicaD/flo",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route":"1.2.x",
+    "angular-mocks":"1.2.x"
+  }
+}
