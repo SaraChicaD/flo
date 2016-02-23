@@ -28,6 +28,5 @@ angular.module('flo.about', ['ngRoute'])
 	
 	};
 
-	this.message = "Hello About!";
 
 }]);

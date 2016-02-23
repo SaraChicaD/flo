@@ -1,3 +1,27 @@
 <div ng-controller="LoginController">
-  <button ng-click="handleAuthClick()">Authorize</button>
+<!-- 	<button ng-click="handleAuthClick()">Authorize</button>
+ -->
+	<div class="container">
+		<form class="form-signin" role="form">
+			<h2 class="text-center">Login</h2>
+			<br/>
+			<div class="form-group">   
+				<div class="row">       
+					<input type="email" class="form-control" placeholder="Email address" required="" autofocus="" />
+				</div>
+			</div>
+			<div class="form-group">          
+				<div class="row">       
+
+					<input type="password" class="form-control" placeholder="Password" required="" />
+				</div>
+
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="handleAuthClick()">
+				Authorize
+			</button>
+		</form>
+
+	</div>
+
 </div>
