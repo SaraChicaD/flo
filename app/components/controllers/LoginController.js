@@ -16,8 +16,8 @@ angular.module('flo.login', ['ngRoute'])
 }])
 
 .controller('LoginController',['$scope', '$log', function($scope, $log) {
-   
-    var clientId = "";
+
+    console.log(process.env.CLIENT_ID);
     var scopes = 'https://www.googleapis.com/auth/calendar';
  
     function handleAuthResult(authResult) {
@@ -33,7 +33,7 @@ angular.module('flo.login', ['ngRoute'])
     }
  
     $scope.handleAuthClick=function (event) {
-        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+        gapi.auth.authorize({client_id: process.env.CLIENT_ID, scope: scopes, immediate: false}, handleAuthResult);
         return false;
     }
  

@@ -5,7 +5,7 @@ var flo = angular.module('flo',['ngRoute',
 	'flo.home','flo.about','flo.login']);
 
 flo.config(function($routeProvider, $locationProvider, $httpProvider) {
-	
+
 	// Declaration of the default route if neither of the controllers
 	// is supporting the request path
 	$routeProvider.otherwise({ redirectTo: '/'});
