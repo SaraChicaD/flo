@@ -15,9 +15,9 @@ angular.module('flo.login', ['ngRoute'])
 	});
 }])
 
-.controller('LoginController',['$scope', '$log', function($scope, $log) {
+.controller('LoginController',['$scope', '$log', 'clientId', function($scope, $log, clientId) {
    
-    var clientId = "";
+    var clientId = clientId;
     var scopes = 'https://www.googleapis.com/auth/calendar';
  
     function handleAuthResult(authResult) {

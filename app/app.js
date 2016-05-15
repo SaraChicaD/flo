@@ -2,7 +2,7 @@
 
 // Defining Angular app model with all other dependent modules
 var flo = angular.module('flo',['ngRoute',
-	'flo.home','flo.about','flo.login']);
+	'flo.home','flo.about','flo.login', 'config']);
 
 flo.config(function($routeProvider, $locationProvider, $httpProvider) {
 	
