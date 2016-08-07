@@ -24,7 +24,8 @@ angular.module('flo.login', ['ngRoute'])
         console.log(authResult);
         var authorizeButton = document.getElementById('authorize-button');
         if (authResult && !authResult.error) {
-           // authorizeButton.style.visibility = 'hidden';
+            console.log(authResult);
+            authorizeButton.style.visibility = 'hidden';
             makeApiCall();
         } else {
             authorizeButton.style.visibility = '';
@@ -51,10 +52,67 @@ angular.module('flo.login', ['ngRoute'])
              });
             request1.execute(function(resp){
                 $.each( resp.items, function( key, value ) {
-                    console.log(resp.items[key].id);// here you give all events from google calendar
+                    // console.log(resp.items[key].id);// here you give all events from google calendar
                 });
             });
         });
     } 
+
+
+
+
+    $scope.createEvent=function () {
+
+        var startDate = '2016-08-10T09:00:00-07:00';
+        var endDate = '2016-08-16T09:00:00-07:00';
+
+        //console.log('\n\ncreating event');
+        var event = {
+          'summary': 'Period',
+          'location': 'Wherever I am',
+          'description': 'My f-ing period',
+          'start': {
+            'dateTime': startDate,
+            'timeZone': 'America/Chicago'
+          },
+          'end': {
+            'dateTime': endDate,
+            'timeZone': 'America/Chicago'
+          },
+          'recurrence': [
+            'RRULE:FREQ=DAILY;COUNT=1'
+          ],
+          'reminders': {
+            'useDefault': false,
+            'overrides': [
+              {'method': 'email', 'minutes': 24 * 60},
+              {'method': 'popup', 'minutes': 10}
+            ]
+          }
+        };
+
+        gapi.client.load('calendar', 'v3', function() {
+
+            var request = gapi.client.calendar.events.insert({
+              'calendarId': 'primary',
+              'resource': event
+            });
+
+            console.log('request', request);
+
+            request.execute(function(event) {
+              $('.event').append('Event created: ' + event.htmlLink);
+
+              console.log('event', event);
+            });
+
+            console.log('created at the bottom ');
+        });
+
+    }
+
+    
  
 }]);
+
+
