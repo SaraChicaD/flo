@@ -11,26 +11,27 @@
   <title>Flo</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <!-- Latest compiled and minified Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
   <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+  <link href="resources/bower/angular-datepicker/dist/angular-datepicker.min.css" rel="stylesheet">
 
-  
+
     <!-- jQuery -->
   <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  
+
 
   <!-- Latest compiled and minified Bootstrap JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
-  </script> 
+  </script>
   <script src="https://apis.google.com/js/client.js"></script>
   <base href="/">
 
-  
+
   <!-- build:css css/app-name.min.css -->
   <link rel="stylesheet" href="resources/css/app.css">
   <!-- endbuild -->
@@ -38,6 +39,9 @@
   <!-- build:js js/app-name.min.js -->
   <script src="resources/bower/angular/angular.js"></script>
   <script src="resources/bower/angular-route/angular-route.min.js"></script>
+  <script src="resources/bower/moment/min/moment.min.js"></script>
+  <script src="resources/bower/moment-timezone/builds/moment-timezone.min.js"></script>
+  <script src="resources/bower/angular-datepicker/dist/angular-datepicker.min.js"></script>
   <script src="app.js"></script>
   <script src="config.js"></script>
   <script src="components/controllers/AboutController.js"></script>
@@ -66,7 +70,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#/" style="color: white;">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="#/aboutView" style="color: white;">About</a></li>
-        <li><a href="#/loginView" style="color: white;">Login</a></li> 
+        <li><a href="#/loginView" style="color: white;">Login</a></li>
       </ul>
     </div>
   </nav>

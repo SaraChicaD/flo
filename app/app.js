@@ -1,11 +1,11 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var flo = angular.module('flo',['ngRoute',
+var flo = angular.module('flo',['ngRoute', 'datePicker',
 	'flo.home','flo.about','flo.login', 'config']);
 
 flo.config(function($routeProvider, $locationProvider, $httpProvider) {
-	
+
 	// Declaration of the default route if neither of the controllers
 	// is supporting the request path
 	$routeProvider.otherwise({ redirectTo: '/'});
