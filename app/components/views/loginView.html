@@ -1,34 +1,46 @@
-<!-- remember to add a note here that says "make sure you're not logged into any other google accounts or that you are logged into the right calendar account or something" -->
 
 <div ng-controller="LoginController">
-<!-- 	<button ng-click="handleAuthClick()">Authorize</button>
- -->
+
 	<div class="container">
-		<form class="form-signin" role="form">
-			<h2 class="text-center">Login</h2>
-			<br/>
-<!-- 			<div class="form-group">   
-				<div class="row">       
-					<input type="email" class="form-control" placeholder="Email address" required="" autofocus="" />
-				</div>
-			</div>
-			<div class="form-group">          
-				<div class="row">       
+		<br/>
 
-					<input type="password" class="form-control" placeholder="Password" required="" />
-				</div>
+		<div class="row text-center">
+			<h3>				
+				Hi! We're so excited you want to Flo with us!
+			</h3>
 
-			</div> -->
-			<button id="authorize-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="handleAuthClick()">
-				Authorize
-			</button>
+			<br />
+			
+			<p>
+				We can't wait to help you live your life easier by tracking your period on your Google Calendar.
+			</p>
+	
+			<br />
 
-			<button id="event-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="createEvent()">
-			CREATE EVENT
-			</button>
+			<p>
+				Note: If you're already logged into a Google account, that's the calendar where you will set your period events. So, make sure you're logged into the Google account you want to use with Flo before you proceed. 
+			</p>
+		</div>
 
-			<div class="event"></div>
-		</form>
+		<div class="row">
+
+			<form class="form-signin" role="form">
+				<h3 class="text-center">Get Flo-ing</h3>
+				
+				<br/>
+				
+				<button id="authorize-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="handleAuthClick()">
+					Google Login
+				</button>
+
+				<button id="event-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="createEvent()">
+				Period Started
+				</button>
+
+<!-- <div class="event"></div> -->			
+			</form>
+
+		</div>
 
 	</div>
 

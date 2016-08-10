@@ -68,7 +68,7 @@ angular.module('flo.login', ['ngRoute'])
 
         //console.log('\n\ncreating event');
         var event = {
-          'summary': 'Period',
+          'summary': 'Period #MyFlo',
           'location': 'Wherever I am',
           'description': 'My f-ing period',
           'start': {
