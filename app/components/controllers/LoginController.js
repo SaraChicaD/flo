@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('flo.login', ['ngRoute'])
+angular.module('flo.login', ['ngRoute', 'datePicker'])
 
 // Routing configuration for this module
 .config(['$routeProvider',function($routeprovider){
@@ -16,10 +16,10 @@ angular.module('flo.login', ['ngRoute'])
 }])
 
 .controller('LoginController',['$scope', '$log', 'clientId', function($scope, $log, clientId) {
-   
+
     var clientId = clientId;
     var scopes = 'https://www.googleapis.com/auth/calendar';
- 
+
     function handleAuthResult(authResult) {
         console.log(authResult);
         var authorizeButton = document.getElementById('authorize-button');
@@ -32,12 +32,12 @@ angular.module('flo.login', ['ngRoute'])
             authorizeButton.onclick = handleAuthClick;
         }
     }
- 
+
     $scope.handleAuthClick=function (event) {
         gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
         return false;
     }
- 
+
     function makeApiCall() {
         gapi.client.load('calendar', 'v3', function() {
             var request = gapi.client.calendar.calendarList.list();
@@ -56,7 +56,7 @@ angular.module('flo.login', ['ngRoute'])
                 });
             });
         });
-    } 
+    }
 
 
 
@@ -111,8 +111,6 @@ angular.module('flo.login', ['ngRoute'])
 
     }
 
-    
- 
+
+
 }]);
-
-

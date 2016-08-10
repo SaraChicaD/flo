@@ -1,0 +1,34 @@
+{
+  "name": "angular-datepicker",
+  "license": "MIT",
+  "version": "2.0.3",
+  "main": [
+    "./dist/angular-datepicker.js",
+    "./dist/angular-datepicker.css"
+  ],
+  "ignore": [
+    ".gitignore",
+    "README.md",
+    "app",
+    "circle.yml",
+    ".travis.yml",
+    "test",
+    ".editorconfig",
+    ".jshintrc",
+    "Gruntfile.js",
+    "karma-e2e.conf.js",
+    "karma.conf.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "1.2.14",
+    "moment": "~2.10.6",
+    "moment-timezone": "~0.4.1"
+  },
+  "devDependencies": {
+    "angular": "1.2.14",
+    "angular-mocks": "1.2.14",
+    "angular-scenario": "1.2.14",
+    "angular-bootstrap": "~0.3.0"
+  }
+}
