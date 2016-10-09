@@ -68,29 +68,18 @@ angular.module('flo.login', ['ngRoute', 'datePicker'])
       });
   }
 
-  $scope.createEvent = function(floDate) {
-
-    // var startDate = '2016-09-12T09:00:00-07:00';
-    var startDate = floDate;
-
-    var endDate = '2016-09-16T09:00:00-07:00';
+  $scope.createEvent = function() {
 
     var event = {
       'summary': 'Period #MyFlo',
       'location': 'Wherever I am',
-      'description': 'My f-ing period',
+      'description': 'bleeding all day',
       'start': {
-        'dateTime': startDate,
-        'timeZone': 'America/Chicago'
+        'dateTime': $scope.dates.minDate.format(),
       },
       'end': {
-        'dateTime': endDate,
-        //endDate add 30 mins
-        'timeZone': 'America/Chicago'
+        'dateTime': $scope.dates.maxDate.format(),
       },
-      'recurrence': [
-        'RRULE:FREQ=DAILY;COUNT=1'
-      ],
       'reminders': {
         'useDefault': false,
         'overrides': [
@@ -141,95 +130,54 @@ angular.module('flo.login', ['ngRoute', 'datePicker'])
     });
   }
 
-  $scope.floAverage = function(length){
+	$scope.dates = {
+		minDate: moment.tz().hour(12).startOf('h'), //12:00 User Timezone, today.
+		maxDate: moment.tz().add(5, 'd').hour(12).startOf('h'), //12:00 User Timezone, in five days.
+	};
+	$scope.options = {
+		view: 'date',
+		format: 'lll',
+		maxView: false,
+		minView: 'hours',
+	};
 
-    //get the average of the flo.length and return it
-    //to be used in the create a date
+	$scope.formats = [
+		 "MMMM YYYY",
+		 "DD MMM YYYY",
+		 "ddd MMM DD YYYY",
+		 "D MMM YYYY HH:mm",
+		 "lll",
+	];
 
-    //return floAverageDays;
+	$scope.views = ['year', 'month', 'date', 'hours', 'minutes'];
+	$scope.callbackState = 'Callback: Not fired';
 
-  };
+	$scope.changeDate = function (modelName, newDate) {
+		console.log(modelName + ' has had a date change. New value is ' + newDate.format());
+		$scope.callbackState = 'Callback: Fired';
+	}
 
-//////////////////
-//from g00fy//
-//////////////////
-
-  $scope.dates = {
-    today: moment.tz('UTC').hour(12).startOf('h'), //12:00 UTC, today.
-    minDate: moment.tz('UTC').add(-4, 'd').hour(12).startOf('h'), //12:00 UTC, four days ago.
-    maxDate: moment.tz('UTC').add(4, 'd').hour(12).startOf('h'), //12:00 UTC, in four days.
-  };
-
-  $scope.options = {
-    view: 'date',
-    format: 'lll',
-    maxView: false,
-    minView: 'hours',
-  };
-
-  $scope.minDate = $scope.dates.minDate;
-
-  $scope.maxDate = $scope.dates.maxDate;
-  
-  $scope.formats = [
-     "MMMM YYYY",
-     "DD MMM YYYY",
-     "ddd MMM DD YYYY",
-     "D MMM YYYY HH:mm",
-     "lll",
-  ];
-  
-  $scope.views = ['year', 'month', 'date', 'hours', 'minutes'];
-  
-  $scope.callbackState = 'Callback: Not fired';
-  
-  $scope.changeDate = function (modelName, floDate) {
-    var floDate = newDate.format();
-    console.log(modelName + ' has had a date change. New value is ' + floDate);
-    $scope.callbackState = 'Callback: Fired';
-    return floDate;
-  }
-  
-  $scope.changeMinMax = function (modelName, newValue) {
-    //minDate or maxDate updated. Generate events to update relevant pickers
-    var values = {
-      minDate: false,
-      maxDate: false,
-    }
-    if (modelName === 'dates.minDate') {
-      values.minDate = newValue;
-      $scope.$broadcast('pickerUpdate', ['pickerMinDate', 'pickerMinDateDiv', 'pickerMaxSelector'], values);
-      values.maxDate = $scope.dates.maxDate;
-    } else if (modelName === 'dates.maxDate') {
-      values.maxDate = newValue;
-      $scope.$broadcast('pickerUpdate', ['pickerMaxDate', 'pickerMaxDateDiv', 'pickerMinSelector'], values);
-      values.minDate = $scope.dates.minDate;
-    }
-    //For either min/max update, update the pickers which use both.
-    $scope.$broadcast('pickerUpdate', ['pickerBothDates', 'pickerBothDatesDiv'], values);
-  }
-  
-  $scope.changeData = function (type) {
-    var values = {},
-        pickersToUpdate = ['pickerMinDate', 'pickerMaxDate', 'pickerBothDates', 'pickerMinDateDiv', 'pickerMaxDateDiv', 'pickerBothDatesDiv', 'pickerRange'];
-    switch (type) {
-      case 'view':
-        values.view = $scope.options.view;
-        break;
-      case 'minView':
-        values.minView = $scope.options.minView;
-        break;
-      case 'maxView':
-        values.maxView = $scope.options.maxView;
-        break;
-      case 'format':
-        values.format = $scope.options.format;
-        break;
-    }
-    if (values) {
-      $scope.$broadcast('pickerUpdate', pickersToUpdate, values);
-    }
-  }
+	$scope.changeData = function (type) {
+		var values = {},
+				pickersToUpdate = ['pickerRange'];
+		switch (type) {
+			case 'view':
+				values.view = $scope.options.view;
+				break;
+			case 'minView':
+				values.minView = $scope.options.minView;
+				break;
+			case 'maxView':
+				values.maxView = $scope.options.maxView;
+				break;
+			case 'format':
+				values.format = $scope.options.format;
+				break;
+		}
+		if (values) {
+			$scope.$broadcast('pickerUpdate', pickersToUpdate, values);
+		}
+	}
 
 
 }]);
