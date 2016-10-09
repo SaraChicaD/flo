@@ -1,67 +1,27 @@
 
 <div ng-controller="LoginController">
 
-<!-- 	<div class="container">
-		<br/>
-
-		<div class="row text-center">
-			<h3>				
-				Hi! We're so excited you want to Flo with us!
-			</h3>
-
-			<br />
-			
-			<p>
-				We can't wait to help you live your life easier by tracking your period on your Google Calendar.
-			</p>
-	
-			<br />
-
-			<p>
-				Note: If you're already logged into a Google account, that's the calendar where you will set your period events. So, make sure you're logged into the Google account you want to use with Flo before you proceed. 
-			</p>
-		</div>
-
-		<div class="row">
-
-			<form class="form-signin" role="form">
-				<h3 class="text-center">Get Flo-ing</h3>
-				
-				<br/>
-				
-				<button id="authorize-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="handleAuthClick()">
-					Google Login
-				</button>
-
-				<button id="event-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="createEvent()">
-				Period Started
-				</button>
-
-<!-- <div class="event"></div> -->			
-			<!-- </form>
-
-		</div> -->
 	<div class="container">
 		<form class="form-signin" role="form">
 			<h2 class="text-center">Login</h2>
 			<br/>
 
-			<button id="authorize-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="handleAuthClick()">
+			<button id="authorize-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00; margin-bottom: 20px;" ng-click="handleAuthClick()">
 				Authorize
 			</button>
 
+	      <input type="text" date-time ng-model="dates.today"  view="hours" date-change="changeDate" />
+	      <div date-picker="dates.today" view="date" date-change="changeDate" timezone="UTC" watch-direct-changes="true">
+	      </div>
 
-
-			<div>&nbsp;</div>
-
-			<div date-picker></div>
-
-			<button id="event-button" class="btn btn-lg btn-block" style="background-color: #00CD00; color: white; border-color: #00CD00;" ng-click="createEvent()">
+			<button id="event-button" class="btn btn-lg btn-block" 
+					style="background-color: #00CD00; color: white; border-color: #00CD00; margin-top: 20px;" 
+					ng-click="createEvent()">
 			CREATE EVENT
 			</button>
 
-			<div class="event"></div>
-		</form>
+<!-- 			<div class="event"></div>
+ -->		</form>
 
 	</div>
 
