@@ -150,6 +150,7 @@ angular.module('flo.login', ['ngRoute', 'datePicker'])
 	];
 
 	$scope.views = ['year', 'month', 'date', 'hours', 'minutes'];
+	
 	$scope.callbackState = 'Callback: Not fired';
 
 	$scope.changeDate = function (modelName, newDate) {
