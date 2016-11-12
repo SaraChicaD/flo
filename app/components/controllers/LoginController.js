@@ -46,14 +46,12 @@ angular.module('flo.login', ['ngRoute', 'datePicker'])
               $.each( resp.items, function( key, value ) {
                   // console.log(resp.items[key].id);
               });
+					request.execute(function(resp) {
+						var flo = resp.items.filter(function(item) {
+							return item.summary === 'Flo';
+						})
 
-
-							request.execute(function(resp) {
-									var flo = resp.items.filter(function(item) {
-										return item.summary === 'Flo';
-									})
-
-									console.log('flo', flo);
+						console.log('flo', flo);
 	            });
           });
           var request1 = gapi.client.calendar.events.list({
@@ -150,6 +148,7 @@ angular.module('flo.login', ['ngRoute', 'datePicker'])
 	];
 
 	$scope.views = ['year', 'month', 'date', 'hours', 'minutes'];
+	
 	$scope.callbackState = 'Callback: Not fired';
 
 	$scope.changeDate = function (modelName, newDate) {
